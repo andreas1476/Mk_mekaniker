@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="da">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mekaniker · Værksted</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="tablet" class="tablet hidden" aria-label="Mekanikertablet">
+        <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">W</span><div><strong>MEKANIKER</strong><small>VÆRKSTEDSSYSTEM</small></div></div>
+            <div class="profile"><div class="avatar" id="avatar">M</div><div class="profile-copy"><strong id="employee-name">Mekaniker</strong><small id="employee-rank">Medarbejder</small></div><span class="duty-dot" id="duty-dot" title="Arbejdsstatus"></span></div>
+            <span class="nav-caption">ARBEJDSOMRÅDE</span>
+            <nav>
+                <button class="nav-item active" data-view="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h7V4H4v9Zm0 7h7v-4H4v4Zm11 0h5V11h-5v9Zm0-16v4h5V4h-5Z"/></svg>Overblik</button>
+                <button class="nav-item" data-view="invoices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2Zm2 5v2h8V8H8Zm0 5v2h8v-2H8Z"/></svg>Fakturaer</button>
+                <button class="nav-item boss-only" data-view="employees"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a4 4 0 1 0-3.9-5h2.1a2 2 0 1 1 1.8 3H15v2h1Zm-8 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-3.3 0-6 1.7-6 3.8V21h12v-2.2C14 15.7 11.3 14 8 14Zm8 0h-1.2c1 .8 1.7 1.8 2 3H22v-1.2c0-1-2.7-1.8-6-1.8Z"/></svg>Medarbejdere</button>
+            </nav>
+            <div class="sidebar-bottom"><div class="system-state"><span class="status-pip"></span><div><strong>Forbundet</strong><small>Værkstedssystem online</small></div></div><button id="close-button" title="Luk tablet (ESC)" aria-label="Luk tablet">×</button></div>
+        </aside>
+        <section class="workspace">
+            <header class="topbar"><div class="heading"><span class="eyebrow">VÆRKSTED / MEKANIKER</span><h1 id="page-title">Overblik</h1></div><div class="top-actions"><span class="date-label" id="today-label"></span><span class="top-divider"></span><span class="connection-label"><i></i> SYSTEM ONLINE</span><button class="icon-button" id="refresh-button" title="Opdater" aria-label="Opdater"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.9-3L3 5v6h6L6.5 8.5A6 6 0 0 1 18 11h2Zm-2 2a6 6 0 0 1-11.5 2H4.4a8 8 0 0 0 14.5 1L21 19v-6h-6l2.5 2.5Z"/></svg></button></div></header>
+            <section class="view active" id="view-overview">
+                <div class="welcome-row"><div><h2 id="welcome-name">Værkstedsstatus</h2><p>Hold styr på dagens arbejde og fakturering.</p></div><span class="shift-tag"><i></i> DRIFT</span></div>
+                <div class="stats-grid">
+                    <article class="stat-card"><span class="stat-label">FAKTURAER</span><div class="stat-main"><strong id="stat-invoices">0</strong><span class="stat-icon">INV</span></div><small>Registreret i systemet</small></article>
+                    <article class="stat-card"><span class="stat-label">FAKTURERET I ALT</span><div class="stat-main"><strong id="stat-revenue">0 kr.</strong><span class="stat-icon">KR</span></div><small>Samlet fakturahistorik</small></article>
+                    <article class="stat-card boss-only"><span class="stat-label">MEDARBEJDERE</span><div class="stat-main"><strong id="stat-employees">0</strong><span class="stat-icon">HOLD</span></div><small>På værkstedets hold</small></article>
+                </div>
+                <div class="dashboard-grid"><div class="content-card activity-card"><div class="section-heading"><div><span class="section-kicker">AKTIVITET</span><h3>Seneste fakturaer</h3></div><button class="text-button" data-goto="invoices">Fakturahistorik <span>→</span></button></div><div id="overview-invoices" class="invoice-list"></div></div>
+                    <aside class="content-card tools-card"><span class="section-kicker">GENVEJE</span><h3>Værktøjer</h3><button class="tool-action" id="new-invoice-button"><span class="tool-icon">＋</span><span><strong>Opret faktura</strong><small>Send regning til kunde i nærheden</small></span><b>›</b></button><button class="tool-action boss-only" data-goto="employees"><span class="tool-icon people-icon">↗</span><span><strong>Holdet</strong><small>Se og administrér medarbejdere</small></span><b>›</b></button><div class="tools-note"><span class="note-bar"></span><span>Fakturering kræver, at kunden står tæt på dig.</span></div></aside>
+                </div>
+            </section>
+            <section class="view" id="view-invoices"><div class="page-intro"><div><span class="section-kicker">ØKONOMI</span><h2>Fakturaer</h2><p>Se historik eller opret en faktura til en kunde tæt på dig.</p></div><button class="primary-button" id="invoice-page-button"><span>＋</span> Ny faktura</button></div><div class="content-card history-card"><div class="section-heading"><div><span class="section-kicker">REGISTRERING</span><h3>Fakturahistorik</h3></div></div><div id="invoice-history" class="invoice-list"></div></div></section>
+            <section class="view" id="view-employees"><div class="page-intro"><div><span class="section-kicker">PERSONALE</span><h2>Medarbejdere</h2><p>Administrér holdets rang og ansættelser.</p></div><button class="primary-button" id="hire-button"><span>＋</span> Ansæt medarbejder</button></div><div class="content-card history-card"><div class="section-heading"><div><span class="section-kicker">VÆRKSTEDETS HOLD</span><h3>Medarbejderliste</h3><p id="employee-count-label">0 medarbejdere</p></div></div><div id="employee-list" class="employee-list"></div></div><p class="hint">Den nye medarbejder skal stå tæt på dig ved ansættelsen.</p></section>
+            <footer class="workspace-footer"><span>MEKANIKER <b>/</b> VÆRKSTEDSSYSTEM</span><span>SESSION AKTIV <i></i></span></footer>
+        </section>
+        <div class="modal-backdrop hidden" id="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Luk">×</button><span class="section-kicker">VÆRKSTED</span><h2 id="modal-title">Ny faktura</h2><p id="modal-description">Udfyld oplysningerne herunder.</p><form id="modal-form"></form></section></div>
+        <div class="toast hidden" id="toast"></div>
+    </main>
+    <main id="customizer" class="customizer hidden" aria-label="Bilværksted">
+        <header class="customizer-header">
+            <div><span class="section-kicker">VÆRKSTED / BILSHOP</span><h1>Bilværksted</h1><p id="customizer-vehicle">Tilpas din bil og køb udstyr.</p></div>
+            <button id="shop-close" class="modal-close" aria-label="Luk">×</button>
+        </header>
+        <div class="customizer-tabs"><button class="customizer-tab active" data-shop-tab="tuning">Tuning & lakering</button><button class="customizer-tab" data-shop-tab="products">Biltilbehør</button></div>
+        <section id="shop-tuning" class="shop-panel active"><div class="shop-section-title"><div><span class="section-kicker">OPGRADERINGER</span><h2>Vælg dele og farver</h2></div><span class="shop-hint">Monteres direkte på bilen</span></div><div id="tune-categories" class="tune-grid"></div></section>
+        <section id="shop-products" class="shop-panel"><div class="shop-section-title"><div><span class="section-kicker">VÆRKSTEDSBUTIK</span><h2>Udstyr til bilen</h2></div><span class="shop-hint">Købes til dit inventar</span></div><div id="product-list" class="product-grid"></div></section>
+        <div id="shop-toast" class="toast hidden"></div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
